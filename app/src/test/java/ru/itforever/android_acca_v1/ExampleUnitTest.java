@@ -1,4 +1,4 @@
-package ru.itforever.acca_v1;
+package ru.itforever.android_acca_v1;
 
 import org.junit.Test;
 

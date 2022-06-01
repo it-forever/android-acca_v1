@@ -6,8 +6,8 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "ru.itforever.acca_v1"
-        minSdk 26
+        applicationId "ru.itforever.android_acca_v1"
+        minSdk 16
         targetSdk 32
         versionCode 1
         versionName "1.0"

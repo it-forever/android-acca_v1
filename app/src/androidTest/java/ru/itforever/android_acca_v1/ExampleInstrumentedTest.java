@@ -1,4 +1,4 @@
-package ru.itforever.acca_v1;
+package ru.itforever.android_acca_v1;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("ru.itforever.acca_v1", appContext.getPackageName());
+        assertEquals("ru.itforever.android_acca_v1", appContext.getPackageName());
     }
 }

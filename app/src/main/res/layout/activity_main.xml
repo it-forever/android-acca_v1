@@ -7,40 +7,46 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="399dp"
-        android:layout_height="31dp"
-        android:text="  Товарищ Майор уже в курсе, не стесняйся"
-        android:textColor="#394FCA"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057" />
-
-    <Button
-        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DOWNLOAD_AUDIO"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="96dp" />
+        android:text="Товарищ майор уже в курсе"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.429"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="175dp"
-        android:layout_height="55dp"
-        android:text="STREAM_AUDIO"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="163dp" />
+        android:id="@+id/stopPlaying"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stopPlaying"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="65dp" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="160dp"
-        android:layout_height="48dp"
-        android:text="READ_DATA"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="245dp" />
+        android:id="@+id/send"
+        android:layout_width="145dp"
+        android:layout_height="50dp"
+        android:text="send"
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="65dp" />
+
+    <Button
+        android:id="@+id/record"
+        android:layout_width="135dp"
+        android:layout_height="43dp"
+        android:text="record"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="139dp" />
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="148dp"
+        android:layout_height="49dp"
+        android:text="stop"
+        tools:layout_editor_absoluteX="179dp"
+        tools:layout_editor_absoluteY="132dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
