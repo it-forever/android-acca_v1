@@ -7,12 +7,40 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_width="399dp"
+        android:layout_height="31dp"
+        android:text="  Товарищ Майор уже в курсе, не стесняйся"
+        android:textColor="#394FCA"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DOWNLOAD_AUDIO"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="96dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="175dp"
+        android:layout_height="55dp"
+        android:text="STREAM_AUDIO"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="163dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:text="READ_DATA"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="245dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
