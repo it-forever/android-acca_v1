@@ -1,105 +1,85 @@
 package ru.itforever.android_acca_v1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import android.content.pm.ActivityInfo;
-import android.media.AudioFormat;
-import android.media.AudioRecord;
-import android.media.MediaRecorder;
-import android.os.AsyncTask;
+import android.Manifest;
+import android.app.Application;
+import android.content.pm.PackageManager;
+import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.File;
-import java.net.URI;
+import java.util.Set;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button stopPlaying, send, record, stop;
-    private AudioRecord audiorecord;
-    private static int SAMPLER = 44100; //Sample Audio Rate
-    private int channelConfig = AudioFormat.CHANNEL_IN_MONO;
-    private int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
-    int minBufSize = AudioRecord.getMinBufferSize(SAMPLER, channelConfig, audioFormat);
-    private boolean status = true;
-    URI uri = URI.create("ws://192.168.50.15:3000");
-    private String outputFile = null;
-    private Thread senderThread = null;
-    private WebSocketClient mWebSocket;
-    private File file = null;
+
+public class MainActivity extends AppCompatActivity {
+    private static TextView t;
+    private TcpClient tc = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        file = new File(Environment.getExternalStorageDirectory(), "recording.wav");
-        audiorecord = new AudioRecord(MediaRecorder.AudioSource.MIC, SAMPLER, channelConfig, audioFormat, minBufSize);
-        send = (Button) findViewById(R.id.send);
-        send.setOnClickListener(this);
-        stop = (Button) findViewById(R.id.stop);
+        setContentView(R.layout.activity_main);
+        checkPermissons();
+        t = (TextView)findViewById(R.id.textView5);
+        t.setMovementMethod(new ScrollingMovementMethod());
+        findViewById(R.id.start_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                tc = new TcpClient(((EditText)findViewById(R.id.address)).getText().toString(), Settings.PORT);
+                tc.start();
+                view.setEnabled(false);
+                findViewById(R.id.echo_button).setEnabled(false);
+            }
+        });
+        findViewById(R.id.echo_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                tc = new TcpClient(((EditText)findViewById(R.id.address)).getText().toString(), Settings.PORT+1);
+                tc.start();
+                view.setEnabled(false);
+                findViewById(R.id.start_button).setEnabled(false);
+            }
+        });
+        findViewById(R.id.exit_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+                System.exit(0);
+            }
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.send:
-                AudioTask task = new AudioTask();
-                task.execute();
-                break;
-            case R.id.stop:
-                audiorecord.stop();
-                mWebSocket.close();
-                Log.d("Socket Closed", "");
-            default:
+    public static void addText(String s){
+        t.append("\n"+s);
+    }
 
-                break;
+    private void checkPermissons() {
+        String[] permissions = {Manifest.permission.RECORD_AUDIO};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            boolean perimissionFlas = false;
+            for (String permissionStr : permissions) {
+                int per = ContextCompat.checkSelfPermission(this, permissionStr);
+                if (per != PackageManager.PERMISSION_GRANTED) {
+                    perimissionFlas = true;
+                }
+            }
+            if (perimissionFlas) {
+                ActivityCompat.requestPermissions(this, permissions, 321);
+            }
         }
     }
-}
-public class AudioTask extends AsyncTask<String, Void, String> {
 
-    @Override
-    protected String doInBackground(String... params) {
-        try {
-            WebSocketClient mWebSocket = new WebSocketClient(URI) {
-                @Override
-                public void onOpen(ServerHandshake handshakedata) {
-                    Log.d("Connected: ", mWebSocket.getConnection().toString());
-                    mWebSocket.send("hello!");
-                    byte[] buffer = new byte[minBufSize];
-                    audiorecord.startRecording();
-                    while (true) {
-                        int number = audiorecord.read(buffer, 0, minBufSize);
-                        for (int i = 0; i < number; i++) {
-                            mWebSocket.send(buffer);
-                        }
-                    }
-                }
-
-                @Override
-                public void onMessage(String message) {
-                    Log.d("Received: ", message);
-                }
-
-                @Override
-                public void onClose(int code, String reason, boolean remote) {
-                    Log.d("Closed", "Code = " + code + ", Reason: " + reason);
-                }
-
-                @Override
-                public void onError(Exception ex) {
-                    Log.d("Error: ", ex.toString());
-                }
-            };
-            mWebSocket.connect();
-        } catch (Exception e) {
-            Log.d("Exception: ", e.toString());
-        }
-        return null;
-    }
-
-    public void execute() {
-    }
 }
