@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.pm.ActivityInfo;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
+import android.media.MediaRecorder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -32,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         file = new File(Environment.getExternalStorageDirectory(), "recording.wav");
-        setContentView(honeywell.rana.sumit.voicecontrol.R.layout.activity_main);
         audiorecord = new AudioRecord(MediaRecorder.AudioSource.MIC, SAMPLER, channelConfig, audioFormat, minBufSize);
         send = (Button) findViewById(R.id.send);
         send.setOnClickListener(this);
@@ -61,7 +63,7 @@ public class AudioTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         try {
-            mWebSocket = new WebSocketClient(uri) {
+            WebSocketClient mWebSocket = new WebSocketClient(URI) {
                 @Override
                 public void onOpen(ServerHandshake handshakedata) {
                     Log.d("Connected: ", mWebSocket.getConnection().toString());
@@ -96,5 +98,8 @@ public class AudioTask extends AsyncTask<String, Void, String> {
             Log.d("Exception: ", e.toString());
         }
         return null;
+    }
+
+    public void execute() {
     }
 }
