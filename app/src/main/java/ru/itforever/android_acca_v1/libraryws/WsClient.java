@@ -21,10 +21,14 @@ public class WsClient extends WebSocketClient {
     public static void createWsClient() {
             URI uri;
             try {
-                uri = new URI("ws://192.168.50.15:8080/wssocket");
+                uri = new URI("ws://192.168.50.15:8080/websocket");
             }
             catch (URISyntaxException e) {
                 e.printStackTrace();
+                return;
+            }
+
+            if (isConnected()) {
                 return;
             }
 
@@ -81,6 +85,7 @@ public class WsClient extends WebSocketClient {
 
     @Override
     public void onOpen() {
+        isConnected = true;
 
     }
 
@@ -111,6 +116,7 @@ public class WsClient extends WebSocketClient {
 
     @Override
     public void onCloseReceived() {
+        isConnected = false;
 
     }
 }

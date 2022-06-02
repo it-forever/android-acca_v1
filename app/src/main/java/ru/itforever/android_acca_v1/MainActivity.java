@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!WsClient.isConnected())
+        if(!WsClient.isConnected()) {
+            WsClient.createWsClient();
+        }
 
         checkPermissons();
         t = (TextView)findViewById(R.id.textView5);
@@ -70,6 +72,28 @@ public class MainActivity extends AppCompatActivity {
     public static void addText(String s){
         t.append("\n"+s);
     }
+
+    public void WsConnect(View view) {
+        WsClient.createWsClient();
+
+    }
+
+    private int send = 0;
+    public void WsSend(View view){
+        WsClient.wsClient.send(String.valueOf(send));
+        send++;
+    }
+
+    public void WsSendMessage(View view){
+        WsClient.wsClient.send("");
+
+    }
+
+    public void WsClose(View view){
+        WsClient.wsClient.close();
+
+    }
+
 
     private void checkPermissons() {
         String[] permissions = {Manifest.permission.RECORD_AUDIO};

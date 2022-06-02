@@ -37,16 +37,29 @@
         android:text="audio_for_text" />
 
     <Button
-        android:id="@+id/buttonstartws"
+        android:id="@+id/connectws"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="StartWS" />
+        android:text="CONNECT_WS"
+        />
 
     <Button
-        android:id="@+id/buttonstopws"
+        android:id="@+id/sendws"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="StopWS" />
+        android:text="SEND_WS" />
+
+    <Button
+        android:id="@+id/sendmessagews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="send_message_ws" />
+
+    <Button
+        android:id="@+id/closews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CLOSE_WS" />
 
     <TextView
         android:id="@+id/textView5"
