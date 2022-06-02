@@ -1,5 +1,7 @@
 package ru.itforever.android_acca_v1.libraryws;
 
+import android.util.Log;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -36,7 +38,7 @@ public class WsClient extends WebSocketClient {
                 @Override
                 public void onOpen() {
                     System.out.println("onOpen");
-                    wsClient.send("Hello, World!");
+                    wsClient.send("I'am. $HOSTNAME");
                 }
 
                 @Override
@@ -72,7 +74,7 @@ public class WsClient extends WebSocketClient {
 
             wsClient.setConnectTimeout(10000);
             wsClient.setReadTimeout(60000);
-            wsClient.addHeader("Origin", "http://developer.example.com");
+            wsClient.addHeader("Origin", "http://developer.it-forever.ru");
             wsClient.enableAutomaticReconnection(5000);
             wsClient.connect();
         }
@@ -91,6 +93,7 @@ public class WsClient extends WebSocketClient {
 
     @Override
     public void onTextReceived(String message) {
+        Log.i("onTextReceived", message);
 
     }
 

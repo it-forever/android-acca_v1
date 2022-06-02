@@ -38,5 +38,6 @@ dependencies {
 
     // Custom Library
     implementation 'tech.gusavila92:java-android-websocket-client:1.2.2'
+    implementation 'com.neovisionaries:nv-websocket-client:2.9'
     implementation 'com.google.code.gson:gson:2.9.0'
 }

@@ -40,13 +40,14 @@
         android:id="@+id/connectws"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CONNECT_WS"
-        />
+        android:hint="Подключится к websocket"
+        android:text="CONNECT_WS" />
 
     <Button
         android:id="@+id/sendws"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Отправить данные на сервер."
         android:text="SEND_WS" />
 
     <Button
