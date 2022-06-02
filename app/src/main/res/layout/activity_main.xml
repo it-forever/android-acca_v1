@@ -5,6 +5,14 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/buttoninstructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:onClick="startNewActivity"
+        android:text="Почитай инструкции" />
+
     <EditText
         android:id="@+id/address"
         android:layout_width="match_parent"

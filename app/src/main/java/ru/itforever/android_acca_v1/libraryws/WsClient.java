@@ -38,7 +38,7 @@ public class WsClient extends WebSocketClient {
                 @Override
                 public void onOpen() {
                     System.out.println("onOpen");
-                    wsClient.send("I'am. $HOSTNAME");
+                    wsClient.send("I'am. Я смог подключится к вашему websocket. Прям смог. Уххх.");
                 }
 
                 @Override

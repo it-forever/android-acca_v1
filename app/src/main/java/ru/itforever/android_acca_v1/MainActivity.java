@@ -6,12 +6,14 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Application;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,8 +69,14 @@ public class MainActivity extends AppCompatActivity {
                 System.exit(0);
             }
         });
-    }
 
+
+
+    }
+    public void startNewActivity(View v){
+        Intent intent = new Intent(this,Instruction.class);
+        startActivity(intent);
+    }
     public static void addText(String s){
         t.append("\n"+s);
     }
