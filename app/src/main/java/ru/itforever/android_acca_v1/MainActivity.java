@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import java.util.Set;
 
+import ru.itforever.android_acca_v1.libraryws.WsClient;
+
 
 public class MainActivity extends AppCompatActivity {
     private static TextView t;
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(!WsClient.isConnected())
+
         checkPermissons();
         t = (TextView)findViewById(R.id.textView5);
         t.setMovementMethod(new ScrollingMovementMethod());
