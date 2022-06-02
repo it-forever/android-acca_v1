@@ -11,6 +11,10 @@ import java.io.PrintWriter;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.io.*;
+import java.nio.file.*;
+import java.util.concurrent.*;
+import java.util.ArrayList;
 
 public class TcpClient extends Thread {
     private String TAG = "TcpClient";
